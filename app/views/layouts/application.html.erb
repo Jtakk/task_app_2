@@ -11,6 +11,25 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+          <%= link_to "POTEPAN Share", home_path, class: "navbar-brand" %>
+          <ul class="navbar-nav">
+            <li><%= link_to "ログイン", '#', class: "btn btn-primary" %></li>
+            <li><%= link_to "登録する", signup_path, class: "btn btn-secondary" %></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <main class="container">
+      <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %>"><%= message %></div>
+      <% end %>
+      <%= yield %>
+    </main>
+    <footer>
+      <p>©︎ 2021 POTEPAN.INC.</p>
+    </footer>
   </body>
 </html>
