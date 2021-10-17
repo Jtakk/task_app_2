@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
@@ -15,10 +15,25 @@
       <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
         <div class="container-fluid">
           <%= link_to "POTEPAN Share", home_path, class: "navbar-brand" %>
-          <ul class="navbar-nav">
-            <li><%= link_to "ログイン", '#', class: "btn btn-primary" %></li>
-            <li><%= link_to "登録する", signup_path, class: "btn btn-secondary" %></li>
-          </ul>
+          <% if logged_in? %>
+            <div class="dropdown">
+              <button class="btn btn-outline-light dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                メニュー
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" >
+                <li><%= link_to "ルーム登録", '#', class: "dropdown-item" %></li>
+                <li><%= link_to "予約済みルーム一覧", '#', class: "dropdown-item" %></li>
+                <li><%= link_to "登録済みルーム一覧", '#', class: "dropdown-item" %></li>
+                <li><%= link_to "設定", account_user_path(current_user), class: "dropdown-item" %></li>
+                <li><%= link_to "ログアウト", logout_path, method: :delete, class: "dropdown-item" %></li>
+              </ul>
+            </div>
+          <% else %>
+            <ul class="navbar-nav">
+              <li><%= link_to "ログイン", login_path, class: "btn btn-primary" %></li>
+              <li><%= link_to "登録する", signup_path, class: "btn btn-secondary" %></li>
+            </ul>
+          <% end %>
         </div>
       </nav>
     </header>
@@ -31,5 +46,6 @@
     <footer>
       <p>©︎ 2021 POTEPAN.INC.</p>
     </footer>
+  
   </body>
 </html>

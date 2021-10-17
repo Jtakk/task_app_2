@@ -7,6 +7,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      log_in(@user)
       flash[:success] = "新しいアカウントが作成されました"
       redirect_to @user
     else
@@ -14,7 +15,11 @@ class UsersController < ApplicationController
     end
   end
   
-  def show
+  def account
+    @user = User.find(params[:id])
+  end
+  
+  def profile
     @user = User.find(params[:id])
   end
   
@@ -29,6 +34,8 @@ class UsersController < ApplicationController
   def destroy
     
   end
+
+
   
   private
   

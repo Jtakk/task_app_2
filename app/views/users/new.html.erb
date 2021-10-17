@@ -1,6 +1,6 @@
 <div>
   <p>新しいアカウントを作成</p>
-  <%= form_with model: @user do |f| %>
+  <%= form_with(model: @user, local: true) do |f| %>
     <%= render 'shared/error_messages', obj: @user %>
     <div class="form-group">
       <%= f.label :name, "ユーザー名" %>
