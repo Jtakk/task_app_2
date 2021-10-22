@@ -15,7 +15,7 @@
     <tbody>
       <% current_user.rooms.each do |room| %>
       <tr>
-        <td><%= room.image %></td>
+        <td><%= link_to (image_tag room.image.thumb.url), room_path(room) %></td>
         <td><%= link_to room.name, room_path(room) %></td>
         <td><%= room.introduction %></td>
         <td><%= room.price %></td>

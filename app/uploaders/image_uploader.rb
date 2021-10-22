@@ -1,5 +1,5 @@
-class AvatarUploader < CarrierWave::Uploader::Base
-
+class ImageUploader < CarrierWave::Uploader::Base
+  
   include CarrierWave::RMagick
 
   storage :file
@@ -10,16 +10,16 @@ class AvatarUploader < CarrierWave::Uploader::Base
   end
 
 
-  process :resize_to_fit => [200, 200]
-
+  process :resize_to_fit => [630, 360]
+  
   # 保存形式をJPGにする
   process :convert => 'jpg'
   
   # サムネイル生成
   version :thumb do
-    process :resize_to_fit => [65, 65]
+    process :resize_to_fit => [245, 140]
   end
-
+  
   # jpg,jpeg,gif,pngしか受け付けない
   def extension_white_list
     %w(jpg jpeg gif png)
@@ -40,4 +40,5 @@ class AvatarUploader < CarrierWave::Uploader::Base
     var = :"@#{mounted_as}_secure_token"
     model.instance_variable_get(var) or model.instance_variable_set(var, SecureRandom.uuid)
   end
+  
 end
