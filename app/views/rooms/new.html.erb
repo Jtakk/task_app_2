@@ -1,0 +1,44 @@
+<div class="container-fluid">
+  <div class="row">
+    <!-- サイドバー -->
+    <div class="col-lg-2">
+      <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item"><%= link_to "基本情報", new_room_path, class: "nav-link active" %></li>
+      </ul>
+    </div>
+    <!-- メイン -->
+    <div class="col-lg-10 bg-light">
+      <div class="flex-column">
+        <%= form_with(model: @room, local: true) do |f| %>
+          <%= render 'shared/error_messages', obj: @room %>
+          <div class="row">
+            <h4>ルーム情報登録</h4>
+          </div>
+          <div class="row">
+            <h5 class="col-md-3"><%= f.label :name, "ルーム名" %></h5>
+            <div class="col-md-9"><%= f.text_field :name, class: "form-control" %></div>
+          </div>
+          <div class="row">
+            <h5 class="col-md-3"><%= f.label :introduction, "ルーム紹介" %></h5>
+            <div class="col-md-9"><%= f.text_area :introduction, class: "form-control" %></div>
+          </div>
+          <div class="row">
+            <h5 class="col-md-3"><%= f.label :price, "料金" %></h5>
+            <div class="col-md-9"><%= f.number_field :price, class: "form-control" %></div>
+          </div>
+          <div class="row">
+            <h5><%= f.label :address, "住所" %></h5>
+            <div class="col-md-9"><%= f.text_field :address, class: "form-control" %></div>
+          </div>
+          <div class="row">
+            <h5><%= f.label :image, "ルーム画像" %></h5>
+            <div class="col-md-9"><%= f.file_field :image, class: "form-control" %></div>
+          </div>
+          <div class="row">
+            <div><%= f.submit "登録", class: "btn btn-primary col-md-2" %></div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

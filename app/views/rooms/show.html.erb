@@ -1,0 +1,20 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-8">
+      <%= @room.image %>
+      <div class="row">
+        <div>
+          <%= image_tag @room.user.avatar.thumb.url %>
+        </div>
+        <div>
+          <p><%= @room.name %></p>
+          <p><%= @room.address %></p>
+        </div>
+      </div>
+      <p><%= @room.introduction %></p>
+    </div>
+    <div class="col-md-4">
+      <p>予約</p>
+    </div>
+  </div>
+</div>

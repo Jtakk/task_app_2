@@ -11,14 +11,14 @@ class AvatarUploader < CarrierWave::Uploader::Base
   end
 
 
-  process :resize_to_fit => [700, 700]
+  process :resize_to_fit => [200, 200]
 
   # 保存形式をJPGにする
   process :convert => 'jpg'
   
   # サムネイル生成
   version :thumb do
-    process :resize_to_fit => [200, 200]
+    process :resize_to_fit => [65, 65]
   end
 
   # jpg,jpeg,gif,pngしか受け付けない
