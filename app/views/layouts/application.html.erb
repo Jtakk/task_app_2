@@ -22,7 +22,7 @@
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" >
                 <li><%= link_to "ルーム登録", new_room_path, class: "dropdown-item" %></li>
-                <li><%= link_to "予約済みルーム一覧", '#', class: "dropdown-item" %></li>
+                <li><%= link_to "予約済みルーム一覧", reservations_path, class: "dropdown-item" %></li>
                 <li><%= link_to "登録済みルーム一覧", posts_user_path(current_user), class: "dropdown-item" %></li>
                 <li><%= link_to "設定", account_user_path(current_user), class: "dropdown-item" %></li>
                 <li><%= link_to "ログアウト", logout_path, method: :delete, class: "dropdown-item" %></li>

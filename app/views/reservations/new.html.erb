@@ -1,0 +1,30 @@
+<div class="container-fluid">
+  <p>予約内容確認</p>
+  <p>¥<%= params[:price] %>/日</p>
+  <%= form_with(model: @reservation, local: true) do |f| %>
+    <%= render 'shared/error_messages', obj: @reservation %>
+    <%= f.hidden_field :room_id, :value => params[:room_id] %>
+    <div class="form-group">
+      <%= f.label :start, "開始日" %>
+      <%= f.date_field :start, value: params[:start], class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :end, "終了日" %>
+      <%= f.date_field :end, value: params[:end], class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <p>使用日数</p>
+      <%= @day %>
+    </div>
+    <div class="form-group">
+      <%= f.label :number, "人数" %>
+      <%= f.number_field :number, value: params[:number], class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <p>合計金額</p>
+      <%= @price %>
+    </div>
+    <%= f.submit "予約を確定", class: "btn btn-primary" %>
+    <%= link_to "ルーム詳細に戻る", room_path(params[:room_id]) %>
+  <% end %>
+</div>

@@ -1,0 +1,31 @@
+<div class="container-fluid">
+  <h4>予約済みルーム一覧 (<%= current_user.reservations.count %>件)</h4>
+  <table>
+    <thead>
+      <tr>
+        <th>ルーム画像</th>
+        <th>ルーム名</th>
+        <th>ルーム紹介</th>
+        <th>合計料金</th>
+        <th>開始日</th>
+        <th>終了日</th>
+        <th>予約確定日時</th>
+        <th>キャンセル</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% current_user.reservations.each do |reservation| %>
+      <tr>
+        <td><%= link_to (image_tag reservation.room.image.thumb.url), room_path(reservation.room) %></td>
+        <td><%= link_to reservation.room.name, room_path(reservation.room) %></td>
+        <td><%= reservation.room.introduction %></td>
+        <td><%= reservation.pre_price * reservation.room.price %></td>
+        <td><%= reservation.start %></td>
+        <td><%= reservation.end %></td>
+        <td><%= reservation.created_at %></td>
+        <td><%= link_to "キャンセル", reservation_path(reservation), method: :delete, data: { confirm: "本当にキャンセルしますか？" } %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

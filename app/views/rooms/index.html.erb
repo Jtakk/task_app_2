@@ -1,0 +1,17 @@
+<div class="container-fluid">
+  <h4>一覧: <%= @rooms.count %>件 </h4>
+  <div class="row">
+    <% @rooms.each do |room| %>
+    <div class="col-sm-6 col-lg-4 col-xl-3">
+      <%= link_to(room_path(room)) do %>
+        <div><%= image_tag room.image.thumb.url %></div>
+        <div>
+          <p><%= room.name %></p>
+          <p><%= room.address %></p>
+          <p>¥<%= room.price %></p>
+        </div>
+      <% end %>
+    </div>
+    <% end %>
+  </div>
+</div>

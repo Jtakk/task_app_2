@@ -54,6 +54,8 @@ class RoomsController < ApplicationController
       params.require(:room).permit(:name, :introduction, :price, :address, :image)
     end
     
+    # beforeアクション
+    
     # room登録者かどうか確認
     def correct_user
       @room = current_user.rooms.find_by(id: params[:id])

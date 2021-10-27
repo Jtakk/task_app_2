@@ -1,5 +1,7 @@
 class Room < ApplicationRecord
   belongs_to :user
+  has_many :reservations
+  has_many :reserve_users, through: :reservations, source: :user
   validates :user_id, presence: true
   validates :name, presence: true
   validates :price, presence: true
