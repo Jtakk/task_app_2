@@ -14,26 +14,35 @@
     <header>
       <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
         <div class="container-fluid">
-          <%= link_to "POTEPAN Share", home_path, class: "navbar-brand" %>
-          <% if logged_in? %>
-            <div class="dropdown">
-              <button class="btn btn-outline-light dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                メニュー
-              </button>
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" >
-                <li><%= link_to "ルーム登録", new_room_path, class: "dropdown-item" %></li>
-                <li><%= link_to "予約済みルーム一覧", reservations_path, class: "dropdown-item" %></li>
-                <li><%= link_to "登録済みルーム一覧", posts_user_path(current_user), class: "dropdown-item" %></li>
-                <li><%= link_to "設定", account_user_path(current_user), class: "dropdown-item" %></li>
-                <li><%= link_to "ログアウト", logout_path, method: :delete, class: "dropdown-item" %></li>
+          <div class="header-leftside">
+            <%= link_to "POTEPAN Share", home_path, class: "navbar-brand" %>
+            <%= search_form_for @q, url: rooms_path do |f| %>
+              <%= f.search_field :address_cont, placeholder: "エリア" %>
+              <%= f.search_field :name_or_address_or_introduction_or_price_cont, placeholder: "キーワード" %>
+              <%= f.submit '検索' %>
+            <% end %>
+          </div>
+          <div class="header-rightside">
+            <% if logged_in? %>
+              <div class="dropdown">
+                <button class="btn btn-outline-light dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                  メニュー
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" >
+                  <li><%= link_to "ルーム登録", new_room_path, class: "dropdown-item" %></li>
+                  <li><%= link_to "予約済みルーム一覧", reservations_path, class: "dropdown-item" %></li>
+                  <li><%= link_to "登録済みルーム一覧", posts_user_path(current_user), class: "dropdown-item" %></li>
+                  <li><%= link_to "設定", account_user_path(current_user), class: "dropdown-item" %></li>
+                  <li><%= link_to "ログアウト", logout_path, method: :delete, class: "dropdown-item" %></li>
+                </ul>
+              </div>
+            <% else %>
+              <ul class="navbar-nav">
+                <li><%= link_to "ログイン", login_path, class: "btn btn-primary" %></li>
+                <li><%= link_to "登録する", signup_path, class: "btn btn-secondary" %></li>
               </ul>
-            </div>
-          <% else %>
-            <ul class="navbar-nav">
-              <li><%= link_to "ログイン", login_path, class: "btn btn-primary" %></li>
-              <li><%= link_to "登録する", signup_path, class: "btn btn-secondary" %></li>
-            </ul>
-          <% end %>
+            <% end %>
+          </div>
         </div>
       </nav>
     </header>

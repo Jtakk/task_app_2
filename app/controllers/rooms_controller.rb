@@ -36,7 +36,7 @@ class RoomsController < ApplicationController
   end
   
   def index
-    @rooms = Room.all
+    @rooms = @q.result
   end
   
   def destroy
@@ -47,12 +47,14 @@ class RoomsController < ApplicationController
   
   
   
-  
   private
   
     def room_params
       params.require(:room).permit(:name, :introduction, :price, :address, :image)
     end
+    
+    
+    
     
     # beforeアクション
     

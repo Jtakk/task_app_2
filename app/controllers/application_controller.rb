@@ -1,5 +1,10 @@
 class ApplicationController < ActionController::Base
   include SessionsHelper
+  before_action :set_q
+  
+  def set_q
+    @q = Room.ransack(params[:q])
+  end
   
   private
   
