@@ -1,18 +1,39 @@
-<h1>Rooms#home</h1>
-<p>Find me in app/views/rooms/home.html.erb</p>
-<div class="top-wrapper">
-  <div>
-    <h2>Potepan Shareでまだ体験したことのない旅をしよう</h2>
+<div class="top">
+  <div class="container">
+    <div class="row col-lg-6">
+      <div class="top-column">
+        <div class="top-box d-flex flex-column">
+          <h2 class="mb-4">Potepan Shareでまだ体験したことのない旅をしよう</h2>
+          <%= search_form_for @q, url: rooms_path do |f| %>
+          <%= f.label :address_cont, "エリア" %>
+          <%= f.search_field :address_cont, placeholder: "東京", class: "form-control mb-4" %>
+          <%= f.submit '探す', class: "btn btn-primary w-100" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
-  <div>
-    <h2>おすすめのエリア</h2>
+</div>
+<div class="container">
+  <div class="recommend-area">
+    <h3 class="mb-4">おすすめのエリア</h3>
+    <div class="row">
+      <div class="panel col-lg-3 col-6 mb-4">
+        <%= link_to image_tag('img_tokyo.jpeg', class: "panel-image"), rooms_path(q: { address_cont: "東京" }) %>
+        <p>東京</p>
+      </div>
+      <div class="panel col-lg-3 col-6 mb-4">
+        <%= link_to image_tag('img_osaka.jpeg', class: "panel-image"), rooms_path(q: { address_cont: "大阪" }) %>
+        <p>大阪</p>
+      </div>
+      <div class="panel col-lg-3 col-6 mb-4">
+        <%= link_to image_tag('img_kyoto.jpeg', class: "panel-image"), rooms_path(q: { address_cont: "京都" }) %>
+        <p>京都</p>
+      </div>
+      <div class="panel col-lg-3 col-6 mb-4">
+        <%= link_to image_tag('img_sapporo.jpeg', class: "panel-image"), rooms_path(q: { address_cont: "札幌" }) %>
+        <p>札幌</p>
+      </div>
+    </div>
   </div>
-  <%= link_to "部屋一覧へ", rooms_path %>
-  <%= link_to "東京", rooms_path(q: { address_cont: "東京" }), class: 'btn btn-primary' %>
-  <%= link_to "大阪", rooms_path(q: { address_cont: "大阪" }), class: 'btn btn-primary' %>
-  <%= link_to "京都", rooms_path(q: { address_cont: "京都" }), class: 'btn btn-primary' %>
-  <%= link_to "札幌", rooms_path(q: { address_cont: "札幌" }), class: 'btn btn-primary' %>
-
-
-
 </div>

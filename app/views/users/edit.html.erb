@@ -1,20 +1,28 @@
 <div class="container-fluid">
-  <p>アカウント編集</p>
-  <%= form_with(model: @user, local: true) do |f| %>
-    <%= render 'shared/error_messages', obj: @user %>
-    <div class="form-group">
-    <%= f.label :email, "メールアドレス" %>
-    <%= f.email_field :email, class: "form-control" %>
-    </div>
-    <div class="form-group">
-    <%= f.label :password, "新しいパスワード" %>
-    <%= f.password_field :password, class: "form-control" %>
-    </div>
-    <div class="form-group">
-    <%= f.label :password_confirmation, "新しいパスワード確認" %>
-    <%= f.password_field :password_confirmation, class: "form-control" %>
-    </div>
-    <%= f.submit "更新", class: "btn btn-primary" %>
-    <%= link_to "戻る", account_user_path(current_user), class: "btn btn-outline-secondary" %>
-  <% end %>
+  <div class="users-edit-box">
+    <h5 class="mb-3">アカウント編集</h5>
+    <%= form_with(model: @user, local: true) do |f| %>
+      <%= render 'shared/error_messages', obj: @user %>
+      <div class="row mb-3">
+        <div class="col-3 fw-bold"><%= f.label :email, "メールアドレス" %></div>
+        <div class="col-9"><%= f.email_field :email, class: "form-control" %></div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-3 d-flex flex-column">
+          <div class="fw-bold"><%= f.label :password, "変更後パスワード" %></div>
+          <div>(変更する場合のみ入力)</div>
+        </div>
+        <div class="col-9"><%= f.password_field :password, placeholder: "(半角英数6文字以上)", class: "form-control" %></div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-3 d-flex flex-column">
+          <div class="fw-bold"><%= f.label :password_confirmation, "パスワード確認" %></div>
+          <div>(変更する場合のみ入力)</div>
+        </div>
+        <div class="col-9"><%= f.password_field :password_confirmation, class: "form-control" %></div>
+      </div>
+      <div class="mb-3"><%= f.submit "更新", class: "btn btn-primary w-25" %></div>
+      <div><%= link_to "戻る", account_user_path(current_user), class: "btn btn-outline-secondary w-25" %></div>
+    <% end %>
+  </div>
 </div>

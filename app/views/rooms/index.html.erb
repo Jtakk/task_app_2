@@ -1,17 +1,21 @@
-<div class="container-fluid room">
-  <h4>検索結果: <%= @rooms.count %>件 </h4>
-  <div class="row">
-    <% @rooms.each do |room| %>
-    <div class="col-sm-6 col-lg-4 col-xl-3">
-      <%= link_to(room_path(room)) do %>
-        <div><%= image_tag room.image.thumb.url %></div>
-        <div>
-          <p><%= room.name %></p>
-          <p><%= room.address %></p>
-          <p>¥<%= room.price %></p>
+<div class="container-fluid">
+  <div class="rooms">
+    <h4 class="mb-4">検索結果: <%= @rooms.count %> 件 </h4>
+    <div class="row">
+      <% @rooms.each do |room| %>
+      <div class="col-sm-6 col-lg-4 col-xl-3 mb-3">
+        <div class="room-inner">
+          <%= link_to(room_path(room)) do %>
+            <div><%= image_tag(room.image.thumb.url, class: "room-img") %></div>
+            <div class="room-info">
+              <p><%= room.name %></p>
+              <p><%= room.address %></p>
+              <p>¥ <%= room.price %></p>
+            </div>
+          <% end %>
         </div>
+      </div>
       <% end %>
     </div>
-    <% end %>
   </div>
 </div>
