@@ -1,0 +1,26 @@
+<div class="container-fluid">
+  <div class="signup-box">
+    <h5 class="mb-3">新しいアカウントを作成</h5>
+    <%= form_with(model: @user, local: true) do |f| %>
+      <%= render 'shared/error_messages', obj: @user %>
+      <div class="row mb-3">
+        <div class="col-2 pt-1"><span class="badge bg-danger">必須</span></div>
+        <div class="col-10 ps-0"><%= f.text_field :name, placeholder: "ユーザー名", class: "form-control" %></div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-2 pt-1"><span class="badge bg-danger">必須</span></div>
+        <div class="col-10 ps-0"><%= f.email_field :email, placeholder: "メールアドレス", class: "form-control" %></div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-2 pt-1"><span class="badge bg-danger">必須</span></div>
+        <div class="col-10 ps-0"><%= f.password_field :password, placeholder: "パスワード(半角英数6文字以上)", class: "form-control" %></div>
+      </div>
+      <div class="row mb-4">
+        <div class="col-2 pt-1"><span class="badge bg-danger">必須</span></div>
+        <div class="col-10 ps-0"><%= f.password_field :password_confirmation, placeholder: "パスワード確認", class: "form-control" %></div>
+      </div>
+      <div class="mb-3"><%= f.submit "新しいアカウントを作成", class: "btn btn-primary w-100" %></div>
+      <div><%= link_to "すでにアカウントをお持ちの方はログイン", login_path %></div>
+    <% end %>
+  </div>
+</div>

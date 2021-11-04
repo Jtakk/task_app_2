@@ -1,0 +1,44 @@
+<div class="container-fluid">
+  <div class="row">
+    <!-- サイドバー -->
+    <div class="col-lg-2 p-3">
+      <ul class="nav flex-column mb-auto text-center">
+        <li class="nav-item border-end border-primary border-3"><%= link_to "基本情報", new_room_path, class: "nav-link" %></li>
+      </ul>
+    </div>
+    <!-- メイン -->
+    <div class="col-lg-10 bg-light p-5">
+      <div class="flex-column bg-white border p-3">
+        <%= form_with(model: @room, local: true) do |f| %>
+          <%= render 'shared/error_messages', obj: @room %>
+          <div class="row p-2">
+            <h4>ルーム情報登録</h4>
+          </div>
+          <div class="row p-4 mx-2 border-top border-bottom">
+            <h6 class="col-md-3 fw-bold"><%= f.label :name, "ルーム名" %><span class="badge bg-danger ms-1">必須</span></h6>
+            <div class="col-md-9"><%= f.text_field :name, placeholder: "ルーム名を入力", class: "form-control" %></div>
+          </div>
+          <div class="row p-4 mx-2 border-bottom">
+            <h6 class="col-md-3 fw-bold"><%= f.label :introduction, "ルーム紹介" %><span class="badge bg-danger ms-1">必須</span></h6>
+            <div class="col-md-9"><%= f.text_area :introduction, placeholder: "ルームの説明を入力", class: "form-control", rows: "5" %></div>
+          </div>
+          <div class="row p-4 mx-2 border-bottom">
+            <h6 class="col-md-3 fw-bold"><%= f.label :price, "料金" %><span class="badge bg-danger ms-1">必須</span></h6>
+            <div class="col-md-9"><%= f.number_field :price, placeholder: "一日あたりの料金を入力", class: "form-control" %></div>
+          </div>
+          <div class="row p-4 mx-2 border-bottom">
+            <h6 class="col-md-3 fw-bold"><%= f.label :address, "住所" %><span class="badge bg-danger ms-1">必須</span></h6>
+            <div class="col-md-9"><%= f.text_field :address, placeholder: "住所を入力", class: "form-control" %></div>
+          </div>
+          <div class="row p-4 mx-2 border-bottom">
+            <h6 class="col-md-3 fw-bold"><%= f.label :image, "ルーム画像" %><span class="badge bg-danger ms-1">必須</span></h6>
+            <div class="col-md-9"><%= f.file_field :image, class: "form-control" %></div>
+          </div>
+          <div class="row p-4">
+            <div><%= f.submit "登録", class: "btn btn-primary col-md-2" %></div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+<div class="container-fluid">
+  <div class="row">
+    <!-- サイドバー -->
+    <div class="col-lg-2 p-3">
+      <ul class="nav flex-column mb-auto text-center">
+        <li class="nav-item border-end border-primary border-3"><%= link_to "アカウント", account_user_path(current_user), class: "nav-link" %></li>
+        <li class="nav-item"><%= link_to "プロフィール", profile_user_path(current_user), class: "nav-link link-dark" %></li>
+      </ul>
+    </div>
+    <!-- メイン -->
+    <div class="col-lg-10 bg-light p-5">
+      <div class="flex-column bg-white border p-3">
+        <div class="row p-2">
+          <h4>アカウント</h4>
+        </div>
+        <div class="row p-4 border-top border-bottom mx-2">
+          <h6 class="col-md-3 fw-bold">メールアドレス</h6>
+          <div class="col-md-9"><%= @user.email %></div>
+        </div>
+        <div class="row p-4 border-bottom mx-2">
+          <h6 class="col-md-3 fw-bold">パスワード</h6>
+          <div class="col-md-9">******</div>
+        </div>
+        <div class="row p-4">
+          <div><%= link_to "編集", edit_user_path(current_user), class: "btn btn-primary col-md-2" %></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

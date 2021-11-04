@@ -5,12 +5,69 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <div class="container-fluid d-sm-flex justify-content-between">
+        <div class="header-leftside d-lg-flex align-items-center">
+          <%= link_to image_tag('potepan-share.png', alt:"サイトロゴ"), home_path %>
+          <div class="d-flex d-lg-block d-none">
+          <%= search_form_for @q, url: rooms_path do |f| %>
+            <div class="search-box me-2">
+              <i class="fas fa-map-marker-alt"></i>
+              <%= f.search_field :address_cont, placeholder: "エリア", class: "form-control" %>
+            </div>
+            <div class="search-box me-2">
+              <i class="fas fa-search"></i>
+              <%= f.search_field :name_or_address_or_introduction_or_price_cont, placeholder: "キーワード", class: "form-control" %>
+            </div>
+            <%= f.submit '検索', class: "btn btn-light" %>
+          <% end %>
+          </div>
+        </div>
+        <div class="header-rightside d-flex align-items-center">
+          <% if logged_in? %>
+            <div class="dropdown d-flex align-items-center">
+              <div class="user-name">
+                <%= current_user.name %>
+              </div>
+              <div class="dropdown-toggle" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                <% if current_user.avatar? %>
+                  <%= image_tag(current_user.avatar.url, class: "avatar-s") %>
+                <% else %>
+                  <%= image_tag 'nc209714.jpeg', class: "avatar-s" %>
+                <% end %>
+              </div>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" >
+                <li><%= link_to "ルーム登録", new_room_path, class: "dropdown-item" %></li>
+                <li><%= link_to "予約済みルーム一覧", reservations_path, class: "dropdown-item" %></li>
+                <li><%= link_to "登録済みルーム一覧", posts_user_path(current_user), class: "dropdown-item" %></li>
+                <li><%= link_to "設定", account_user_path(current_user), class: "dropdown-item" %></li>
+                <li><%= link_to "ログアウト", logout_path, method: :delete, class: "dropdown-item" %></li>
+              </ul>
+            </div>
+          <% else %>
+            <div class="d-flex align-items-center">
+              <%= link_to "ログイン", login_path, class: "btn btn-primary me-4" %>
+              <%= link_to "登録する", signup_path, class: "btn btn-secondary" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </header>
+    <main>
+      <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %>"><%= message %></div>
+      <% end %>
+      <%= yield %>
+    </main>
+    <footer>
+      <p>©︎ 2021 POTEPAN.INC.</p>
+    </footer>
+  
   </body>
 </html>
